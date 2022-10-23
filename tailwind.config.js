@@ -6,8 +6,11 @@ module.exports = {
   theme: {
     extend: {
       lineHeight: {
-        "taco": '.5rem'  
+        "tighter": '.5rem'  
       },
+      fontFamily: {
+        "times": "times new roman"
+      }
     },
   },
   plugins: [],
