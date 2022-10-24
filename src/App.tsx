@@ -1,12 +1,17 @@
 import React, {useState} from "react"
 import Login from "./components/Login";
+import Wordle from "./components/Wordle";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-
+  console.log(loggedIn)
   return (
     <div className="App">
-      <Login loggedIn = {loggedIn}/>
+      {loggedIn ?
+        <Wordle />
+      :
+        <Login setLoggedIn = {setLoggedIn}/>
+      }
     </div>
   );
 }

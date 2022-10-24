@@ -1,7 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 
-export default function Login() {
+
+export default function Login(props : {setLoggedIn: Function}) {
+    const [email, setEmail] = useState("")
+
+    function handleChangeEmail(event: React.ChangeEvent<HTMLInputElement>){
+        setEmail(event.target.value)
+    }
+
+    function login(){
+        if(!email)return 
+        props.setLoggedIn(true)
+    }
+
   return (
     <div className='container text-center flex flex-col items-center'>
       <h1 className='text-xl py-4 font-bold border-gray-800 '>
@@ -23,9 +35,11 @@ export default function Login() {
             <input
               type='text'
               className='border border-gray-700 py-1 rounded-sm px-2'
+              onChange={handleChangeEmail}
+              value={email}
             />
           </div>
-          <button className='bg-black text-white font-bold py-2 rounded-sm'>
+          <button className='bg-black text-white font-bold py-2 rounded-sm' onClick={login}>
             Continue
           </button>
           <h1 className='border-b border-gray-300 text-sm leading-tighter'>
