@@ -4,7 +4,6 @@ import Wordle from "./components/Wordle";
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
-  console.log(loggedIn)
   return (
     <div className="App">
       {loggedIn ?
