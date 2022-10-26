@@ -23,15 +23,15 @@ const Row: React.FunctionComponent<RowProps> = ({keyPressed, tries, typedWord}) 
     //     return array
     // }
 
-    // useEffect(() =>{
-    //     if(word){
-    //         const copy = letterArray
-    //         for(let i = 0; i < word.length; i++){
-    //             copy[i] = letterArray[i]
-    //         }
-    //         setLetterArray(copy)
-    //     }
-    // },[word, letterArray])
+    useEffect(() =>{
+        if(typedWord){
+            const copy = letterArray
+            for(let i = 0; i < typedWord.length; i++){
+                copy[i] = typedWord[i]
+            }
+            setLetterArray(copy)
+        }
+    },[typedWord, letterArray])
     
 
     // if(word){
