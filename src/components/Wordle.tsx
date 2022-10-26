@@ -9,7 +9,7 @@ interface WordleProps {
  
 const Wordle : React.FC<WordleProps> = () => {
     return ( 
-        <div>
+        <div className="flex flex-col  justify-center">
             <nav className="flex justify-between align-center p-4 text-2xl font-mono">
                 <a href= "#"><FaBars/></a>
                 <h1 className="font-black" >Wordle</h1>
@@ -19,6 +19,7 @@ const Wordle : React.FC<WordleProps> = () => {
                     <a href = "#"><AiFillSetting/></a>
                 </div>
             </nav>
+            <hr/>
             <Board />
         </div>
      );
