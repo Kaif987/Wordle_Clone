@@ -10,15 +10,15 @@ interface BoardProps {
 }
  
 const Board: React.FC<BoardProps> = () => {
-    const {currentGuess, handleKeyUp} = useWordle()
+    const {currentGuess, handleKeyup} = useWordle()
     
     useEffect(() =>{
-        window.addEventListener('keyup', handleKeyUp)
+        window.addEventListener('keyup', handleKeyup)
 
         return () =>{
-            window.removeEventListener('keyup', handleKeyUp)
+            window.removeEventListener('keyup', handleKeyup)
         }
-    },[])
+    },[handleKeyup])
 
     return (
         <div className="flex flex-col justify-center items-center gap-1 mt-4">

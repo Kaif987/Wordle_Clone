@@ -1,3 +1,4 @@
+import React from "react"
 import {FaBars, FaQuestionCircle } from "react-icons/fa"
 import {AiFillSetting} from "react-icons/ai"
 import {GiPodium} from "react-icons/gi"
