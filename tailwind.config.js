@@ -10,6 +10,9 @@ module.exports = {
       },
       fontFamily: {
         "times": "times new roman"
+      },
+      colors:{
+        "darkGray": "#787c7e"
       }
     },
   },

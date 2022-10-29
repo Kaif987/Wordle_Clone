@@ -11,9 +11,8 @@ interface BoardProps {
  
 const Board: React.FC<BoardProps> = () => {
     const solution = randomWords()
-    const {currentGuess, guesses, handleKeyup, formatGuesses} = useWordle(solution)
-    const run:number = 6
-    const stg = formatGuesses()
+    const {currentGuess, guesses, handleKeyup, turn} = useWordle(solution)
+
 
     useEffect(() =>{
         window.addEventListener('keyup', handleKeyup)
@@ -25,7 +24,19 @@ const Board: React.FC<BoardProps> = () => {
 
     return (
         <div className="flex flex-col justify-center items-center gap-1 mt-4">
-            {[...Array(6)].map((e,i) => <Row/>)}
+            {
+            [...Array(6)].map((e,i) => {
+                // const colors = formatGuesses(guesses[i])
+                if(turn === i){
+                    return <Row currentGuess= {currentGuess}/>
+                }
+                if(guesses[i]){
+                    return <Row guess = {guesses[i]}/>
+                }else{
+                    return <Row />
+                }
+            })
+            }
         </div>
     );
 }
