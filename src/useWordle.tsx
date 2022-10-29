@@ -1,10 +1,9 @@
 import {useState, useEffect} from "react"
-import { setSyntheticLeadingComments } from "typescript"
 
-const useWordle = () => {
+const useWordle = (solution: string) => {
     const [currentGuess, setCurrentGuess] = useState("")
     const [guesses, setGuesses] = useState<string[]>([])
-    const [turn, setTurn] = useState(1)
+    const [turn, setTurn] = useState(0)
     const [history, setHistory] = useState<string[]>([])
     const alphabets = /^[a-zA-Z]$/
 
@@ -13,13 +12,31 @@ const useWordle = () => {
     },[guesses])
 
 
+    const formatGuesses = () => {
+        const solutionArray: string[] = solution.split('')
+        const formatted = guesses.map(guess =>{
+            const guessArray: string[] = guess.split("")
+            return guessArray.map((letter, index) =>{
+                if(solutionArray[index] === letter){
+                    return {color: "green"}
+                }
+                if(solutionArray.includes(letter)){
+                    return {color: "yellow"}
+                }else{
+                    return {color: "black"}
+                }
+            })
+        })
+        console.log(formatted)
+        return formatted
+    }
+
     const handleKeyup = ({ key } : KeyboardEvent) => {
-        
         if(turn > 5){
-            console.log("You have only 5 guesses")
+            console.log("You have only 6 guesses")
             return 
         }
-        
+
         if(key === "Enter" && currentGuess.length === 5){
             if(!(history.includes(currentGuess))){
                 setGuesses(prevGuess => {
@@ -44,7 +61,7 @@ const useWordle = () => {
         }
       }
 
-    return {currentGuess, guesses, handleKeyup}
+    return {currentGuess, guesses, handleKeyup, formatGuesses}
 }
 
 
