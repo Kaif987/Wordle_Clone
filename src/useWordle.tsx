@@ -11,21 +11,22 @@ const useWordle = (solution: string) => {
         console.log(guesses)
     },[guesses])
 
-    // const formatGuesses = (previousGuess:string) => {
-    //     const solutionLetter = previousGuess.split('')
-    //     const previousGuessLetter = previousGuess.split('')
-    //     return solutionLetter.map((letter:string,index:number) =>{
-    //         if(letter === previousGuessLetter[index]){
-    //             return "green"
-    //         }
-    //         if(solutionLetter.includes(letter)){
-    //             return "yellow"
-    //         }else{
-    //             return "gray"
-    //         }
-    //     })
-    // }
+    const formatGuesses = (previousGuess :string | undefined) => {
+        if(!previousGuess)return 
+        const solutionLetter = solution.split('')
+        const previousGuessLetter = previousGuess.split('')
 
+        return previousGuessLetter.map((letter:string, index:number) =>{
+            if(letter === solutionLetter[index]){
+                return "green"
+            }
+            if(solutionLetter.includes(letter)){
+                return "yellow"
+            }else{
+                return "gray"
+            }
+        })
+    }
 
 
     const handleKeyup = ({ key } : KeyboardEvent) => {
@@ -58,7 +59,7 @@ const useWordle = (solution: string) => {
         }
       }
 
-    return {currentGuess, guesses, turn, handleKeyup}
+    return {currentGuess, guesses, turn, handleKeyup ,formatGuesses}
 }
 
 export {useWordle}

@@ -3,6 +3,7 @@ import { useWordle } from "../useWordle"
 
 
 interface RowProps {
+    key: number;
     currentGuess?: string;
     guess?: string;
     colors?: ('gray' | 'green' | 'yellow')[]
@@ -26,8 +27,8 @@ const Row: React.FunctionComponent<RowProps> = ({currentGuess , guess, colors}) 
 
     function currentGuessCase(){
         const letters = addSpaces()
-        return letters?.map(letter =>{
-            return <div className = "border-2 border-gray-300 w-12 h-12 flex justify-center items-center" >{letter.toUpperCase()}</div>
+        return letters?.map((letter,index) =>{
+            return <div key={index} className = "border-2 border-gray-300 w-12 h-12 flex justify-center items-center" >{letter.toUpperCase()}</div>
         })
     }
 
@@ -45,26 +46,18 @@ const Row: React.FunctionComponent<RowProps> = ({currentGuess , guess, colors}) 
                 }
             })()
 
-            return <div className = {`border-2 border-gray-300 w-12 h-12 flex justify-center items-center text-white font-bold ${style}`} >{letter.toUpperCase()}</div>
+            return <div key = {index} className = {`border-2 border-gray-300 w-12 h-12 flex justify-center items-center text-white font-bold ${style}`} >{letter.toUpperCase()}</div>
         })
     }
 
     // third when the player has not guessed the word
     function elseCase(){
         const letters = new Array(5).fill(" ")
-        return letters.map(letter =>{
-            return <div className = "border-2 border-gray-300 w-12 h-12 flex justify-center items-center" >{letter.toUpperCase()}</div>
+        return letters.map((letter, index) =>{
+            return <div key={index} className = "border-2 border-gray-300 w-12 h-12 flex justify-center items-center" >{letter.toUpperCase()}</div>
         })
     }
 
-
-    // const letters = calculateLetters()
-    
-    // const letterArrayElements = 
-    //         letters.map((letter, index) =>{
-    //             return <div key = {index} className="flex justify-center items-center border-2 border-gray-300 w-12 h-12">{letter}</div>
-    //         })
-            
     return (
         <div className="flex gap-1">
                 {

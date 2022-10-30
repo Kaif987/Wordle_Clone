@@ -1,3 +1,4 @@
+import { format } from "path";
 import {useEffect} from "react"
 import {useWordle} from "../useWordle"
 import randomWords from "../words"
@@ -11,8 +12,7 @@ interface BoardProps {
  
 const Board: React.FC<BoardProps> = () => {
     const solution = randomWords()
-    const {currentGuess, guesses, handleKeyup, turn} = useWordle(solution)
-
+    const {currentGuess, guesses, handleKeyup, turn, formatGuesses} = useWordle(solution)
 
     useEffect(() =>{
         window.addEventListener('keyup', handleKeyup)
@@ -26,14 +26,15 @@ const Board: React.FC<BoardProps> = () => {
         <div className="flex flex-col justify-center items-center gap-1 mt-4">
             {
             [...Array(6)].map((e,i) => {
-                // const colors = formatGuesses(guesses[i])
+                const colors = formatGuesses(guesses[i]) 
+                console.log(colors)
                 if(turn === i){
-                    return <Row currentGuess= {currentGuess}/>
+                    return <Row key = {i} currentGuess= {currentGuess}/>
                 }
                 if(guesses[i]){
-                    return <Row guess = {guesses[i]}/>
+                    return <Row key ={i}  guess = {guesses[i]} colors = {colors} />
                 }else{
-                    return <Row />
+                    return <Row key = {i} />
                 }
             })
             }
