@@ -1,31 +1,39 @@
 import {useState, useEffect} from "react"
 
+
 const useWordle = (solution: string) => {
     const [currentGuess, setCurrentGuess] = useState("")
     const [guesses, setGuesses] = useState<string[]>([])
     const [turn, setTurn] = useState(0)
     const [history, setHistory] = useState<string[]>([])
+    const [formattedGuesses, setFormattedGuesses] = useState<{letter: string, color: string}[][]>([])
     const alphabets = /^[a-zA-Z]$/
 
-    useEffect(() =>{
-        console.log(guesses)
-    },[guesses])
 
-    const formatGuesses = (previousGuess :string | undefined) => {
-        if(!previousGuess)return 
-        const solutionLetter = solution.split('')
-        const previousGuessLetter = previousGuess.split('')
-
-        return previousGuessLetter.map((letter:string, index:number) =>{
-            if(letter === solutionLetter[index]){
-                return "green"
-            }
-            if(solutionLetter.includes(letter)){
-                return "yellow"
-            }else{
-                return "gray"
-            }
-        })
+    // get the current guess and based on the solution give them appropriate colors
+    const formatGuesses = () => {
+      
+      const solutionArray = [...solution]
+      const formattedGuess = [...currentGuess].map((letter) =>{
+          return {letter, color: "incorrect"}
+      })
+      
+      formattedGuess.forEach((object, index) =>{
+          if(object.letter === solutionArray[index]){
+              object.color = "correct"
+              solutionArray[index] = "null"
+          }
+      })
+      
+      formattedGuess.forEach((object, index) =>{
+          if(solutionArray.includes(object.letter)){
+              if(object.color !== "correct"){
+                  object.color = "correctlyPlaced"
+              }
+          }    
+      })
+      
+      return formattedGuess
     }
 
 
@@ -42,6 +50,10 @@ const useWordle = (solution: string) => {
                 })
                 setTurn(prev => prev + 1)        
                 setHistory((prevHistory) => [...prevHistory, currentGuess])
+                const formatted = formatGuesses()
+                setFormattedGuesses(prevFormattedGuesses => {
+                    return [...prevFormattedGuesses, formatted]
+                })
                 setCurrentGuess("")
             }
         }
@@ -59,7 +71,7 @@ const useWordle = (solution: string) => {
         }
       }
 
-    return {currentGuess, guesses, turn, handleKeyup ,formatGuesses}
+    return {currentGuess, guesses, turn, formattedGuesses, handleKeyup ,formatGuesses }
 }
 
 export {useWordle}

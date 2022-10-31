@@ -6,11 +6,11 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false)
   return (
     <div className="App">
-      <Wordle />
-      {/* {loggedIn ?
+      {loggedIn ?
+        <Wordle />
       :
         <Login setLoggedIn = {setLoggedIn}/>
-      } */}
+      }
     </div>
   );
 }

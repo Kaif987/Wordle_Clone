@@ -12,7 +12,9 @@ module.exports = {
         "times": "times new roman"
       },
       colors:{
-        "darkGray": "#787c7e"
+        "incorrect": "#787c7e",
+        "correct": "#538d4e",
+        "correctlyPlaced": "#c9b458"
       }
     },
   },
