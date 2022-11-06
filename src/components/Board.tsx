@@ -6,6 +6,7 @@ import Row from "./Row";
 interface BoardProps {
     
 }
+
 const solution = randomWords()
  
 const Board: React.FC<BoardProps> = () => {
