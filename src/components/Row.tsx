@@ -32,8 +32,21 @@ const Row: React.FunctionComponent<RowProps> = ({currentGuess , guess, formatted
     // second where the guess is a past guess
     function pastGuess(){
         return formatted?.map(( {letter, color}, index) =>{
-            console.log(color)
-            return <div key = {index} className = {`flex justify-center items-center border-2 border-gray-300 h-12 w-12 font-bold bg-${color}`} >{letter.toUpperCase()}</div>
+            let style; 
+            if(color === "correct"){
+                style = {
+                    backgroundColor: "#538d4e" 
+                }
+            }else if(color === "correctlyPlaced") {
+                style = {
+                    backgroundColor: "#c9b458"
+                }
+            }else{
+                style = {
+                    backgroundColor: "#787c7e"
+                }
+            }
+            return <div key = {index} style = {style} className = {`flex justify-center items-center border-2 border-gray-300 h-12 w-12 font-bold`} >{letter.toUpperCase()}</div>
         })
         
     }

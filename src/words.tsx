@@ -1,6 +1,6 @@
 const words = [
     "hello",
-    "bhor",
+    "board",
     "abide",
     "abode",
     "abort",
