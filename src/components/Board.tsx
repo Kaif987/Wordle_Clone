@@ -4,13 +4,10 @@ import randomWords from "../words"
 import Row from "./Row";
 
 interface BoardProps {
-    
+    solution: string    
 }
 
-const solution = randomWords()
- 
-const Board: React.FC<BoardProps> = () => {
-    console.log(solution)
+const Board: React.FC<BoardProps> = ({solution}) => {
     const {currentGuess, guesses, formattedGuesses, handleKeyup, turn} = useWordle(solution)
 
     useEffect(() =>{

@@ -5,10 +5,10 @@ import {GiPodium} from "react-icons/gi"
 import Board from "./Board"
 
 interface WordleProps {
-    
+    solution: string
 }
  
-const Wordle : React.FC<WordleProps> = () => {
+const Wordle : React.FC<WordleProps> = ({solution}) => {
     return ( 
         <div className="flex flex-col  justify-center">
             <nav className="flex justify-between align-center p-4 text-2xl font-mono">
@@ -21,7 +21,7 @@ const Wordle : React.FC<WordleProps> = () => {
                 </div>
             </nav>
             <hr/>
-            <Board />
+            <Board solution = {solution}/>
         </div>
      );
 }

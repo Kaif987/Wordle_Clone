@@ -7,7 +7,6 @@ interface RowProps {
 }
  
 const Row: React.FunctionComponent<RowProps> = ({currentGuess , guess, formatted}) => {
-    console.log(formatted)
     // adds spaces at the end of string to make it a 5 letter word 
     const addSpaces = () =>{
         if(!currentGuess)return 
