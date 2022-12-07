@@ -7,6 +7,7 @@ const useWordle = (solution: string) => {
     const [turn, setTurn] = useState(0)
     const [history, setHistory] = useState<string[]>([])
     const [formattedGuesses, setFormattedGuesses] = useState<{letter: string, color: string}[][]>([])
+    const [isCorrect, setIsCorrect] = useState(false)
     const alphabets = /^[a-zA-Z]$/
 
 
@@ -54,6 +55,10 @@ const useWordle = (solution: string) => {
                 setFormattedGuesses(prevFormattedGuesses => {
                     return [...prevFormattedGuesses, formatted]
                 })
+
+                if(currentGuess === solution){
+                    setIsCorrect(true)
+                }
                 setCurrentGuess("")
             }
         }
@@ -71,7 +76,7 @@ const useWordle = (solution: string) => {
         }
       }
 
-    return {currentGuess, guesses, turn, formattedGuesses, handleKeyup ,formatGuesses }
+    return {currentGuess, guesses, turn, isCorrect, formattedGuesses, handleKeyup ,formatGuesses }
 }
 
 export {useWordle}
