@@ -27,7 +27,7 @@ const randomWords = () =>{
     return words[Math.floor(Math.random() * words.length)]
 }
 
-export default randomWords
+export {randomWords}
 
 
 

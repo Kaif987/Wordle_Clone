@@ -11,7 +11,6 @@ const Board: React.FC<BoardProps> = ({solution}) => {
 
     useEffect(() =>{
         window.addEventListener('keyup', handleKeyup)
-        console.log(turn)
         return () =>{
             window.removeEventListener('keyup', handleKeyup)
         }
